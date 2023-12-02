@@ -1,0 +1,17 @@
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\bin\Debug\net6.0-windows\Wall-E.exe
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\bin\Debug\net6.0-windows\Wall-E.deps.json
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\bin\Debug\net6.0-windows\Wall-E.runtimeconfig.json
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\bin\Debug\net6.0-windows\Wall-E.dll
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\bin\Debug\net6.0-windows\ref\Wall-E.dll
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\bin\Debug\net6.0-windows\Wall-E.pdb
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.csproj.AssemblyReference.cache
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.GeneratedMSBuildEditorConfig.editorconfig
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.AssemblyInfoInputs.cache
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.AssemblyInfo.cs
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.csproj.CoreCompileInputs.cache
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.dll
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\ref\Wall-E.dll
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.pdb
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.genruntimeconfig.cache
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall_E.Form1.resources
+C:\CC22\Wall- E\Graphics\Wall-E\Wall-E\obj\Debug\net6.0-windows\Wall-E.csproj.GenerateResource.cache

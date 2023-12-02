@@ -1,5 +1,4 @@
-namespace Hulk;
-
+﻿namespace Wall_E
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,7 +33,7 @@ public enum TipoToken
 
     Concatenador,
 
-   
+
 }
 
 
@@ -42,10 +41,10 @@ public enum TipoToken
 
 
 
- public class Token 
-{    
-      
-    
+public class Token
+{
+
+
 
 
 
@@ -54,42 +53,42 @@ public enum TipoToken
         Tipo = tipo;
         Valor = valor;
     }
-    public  TipoToken Tipo { get; }
-    public string Valor { get; }  
-
-    
-} 
+    public TipoToken Tipo { get; }
+    public string Valor { get; }
 
 
+}
 
- 
-  
+
+
+
+
 public abstract class AST
 {
     public abstract object Evaluar(Entorno entorno);
-     
+
 }
 
 public abstract class Instruccion
 {
-    
+
 }
 
 
 
 public abstract class Funcion : Instruccion
 {
-    public  abstract Token nombre {get;}
+    public abstract Token nombre { get; }
 }
 
 
 public sealed class FunctionLine : Funcion
 {
-    public override Token nombre {get;}
-     public Punto P1 {get;}
-      public Punto P2 {get;}
+    public override Token nombre { get; }
+    public Punto P1 { get; }
+    public Punto P2 { get; }
 
-   public FunctionLine(Token nombre , Punto P1 , Punto P2  )
+    public FunctionLine(Token nombre, Punto P1, Punto P2)
     {
         this.nombre = nombre;
         this.P1 = P1;
@@ -98,170 +97,170 @@ public sealed class FunctionLine : Funcion
     }
 }
 
-public sealed class FuncionSegment: Funcion
+public sealed class FuncionSegment : Funcion
 {
-    public override Token nombre {get;}
-     public Punto P1 {get;}
-      public Punto P2 {get;}
+    public override Token nombre { get; }
+    public Punto P1 { get; }
+    public Punto P2 { get; }
 
-   public FuncionSegment(Token nombre , Punto P1 , Punto P2  )
+    public FuncionSegment(Token nombre, Punto P1, Punto P2)
     {
         this.nombre = nombre;
         this.P1 = P1;
         this.P2 = P2;
-        
+
     }
 }
 
-public sealed class Ray: Funcion
+public sealed class Ray : Funcion
 {
-    public override Token nombre {get;}
-     public Punto P1 {get;}
-      public Punto P2 {get;}
+    public override Token nombre { get; }
+    public Punto P1 { get; }
+    public Punto P2 { get; }
 
-   public Ray(Token nombre , Punto P1 , Punto P2  )
+    public Ray(Token nombre, Punto P1, Punto P2)
     {
         this.nombre = nombre;
         this.P1 = P1;
         this.P2 = P2;
-        
+
     }
 }
 
 
-public sealed class Measure: Funcion
+public sealed class Measure : Funcion
 {
-    public override Token nombre {get;}
-     public Punto P1 {get;}
-      public Punto P2 {get;}
+    public override Token nombre { get; }
+    public Punto P1 { get; }
+    public Punto P2 { get; }
 
-   public Measure(Token nombre , Punto P1 , Punto P2  )
+    public Measure(Token nombre, Punto P1, Punto P2)
     {
         this.nombre = nombre;
         this.P1 = P1;
         this.P2 = P2;
-        
+
     }
 }
 
-public sealed class Arc: Funcion
+public sealed class Arc : Funcion
 {
-    public override Token nombre {get;}
-     public Punto P1 {get;}
-     public Punto P2 {get;}
-     public double Measure {get;}
+    public override Token nombre { get; }
+    public Punto P1 { get; }
+    public Punto P2 { get; }
+    public double Measure { get; }
 
-   public Arc(Token nombre , Punto P1 , Punto P2 , double Measure )
+    public Arc(Token nombre, Punto P1, Punto P2, double Measure)
     {
         this.nombre = nombre;
         this.P1 = P1;
         this.P2 = P2;
         this.Measure = Measure;
-        
+
     }
 }
 
 public sealed class Intersect : Funcion
 {
-     public override Token nombre {get;}
-     public Figura Figure1 {get;}
-     public Figura  Figure2 {get;}
-    
+    public override Token nombre { get; }
+    public Figura Figure1 { get; }
+    public Figura Figure2 { get; }
 
-   public Intersect(Token nombre , Figura Figure1 , Figura Figure2  )
+
+    public Intersect(Token nombre, Figura Figure1, Figura Figure2)
     {
         this.nombre = nombre;
         this.Figure1 = Figure1;
         this.Figure2 = Figure2;
-        
-        
+
+
     }
 }
 
 public class Draw
 {
-     public  Token Nombre {get;}
-     public string Label {get;}
+    public Token Nombre { get; }
+    public string Label { get; }
 
-     public Figura Figura {get;}
+    public Figura Figura { get; }
 
-    public Draw(Token Nombre ,Figura Figura)  : this (Nombre , Figura , null   ){}
-     public Draw(Token Nombre ,  Figura Figura ,string Label ) 
-     {
+    public Draw(Token Nombre, Figura Figura) : this(Nombre, Figura, null) { }
+    public Draw(Token Nombre, Figura Figura, string Label)
+    {
         this.Nombre = Nombre;
         this.Label = Label;
         this.Figura = Figura;
-    
-     }  
+
+    }
 }
 
 
-public abstract class Figura: Instruccion
+public abstract class Figura : Instruccion
 {
-  
-  public  abstract Token identificador{get;}
-  public  abstract Token nombre {get;}
-  
+
+    public abstract Token identificador { get; }
+    public abstract Token nombre { get; }
+
 }
 public sealed class CircleFunction : Funcion
 {
-    public override Token nombre {get;}
-     public Punto P1 {get;}
-   
-     public double Measure {get;}
+    public override Token nombre { get; }
+    public Punto P1 { get; }
 
-   public CircleFunction(Token nombre , Punto P1 ,  double Measure )
+    public double Measure { get; }
+
+    public CircleFunction(Token nombre, Punto P1, double Measure)
     {
         this.nombre = nombre;
         this.P1 = P1;
         this.Measure = Measure;
-        
+
     }
 }
 
 public sealed class Count : Funcion
 {
-    public override Token nombre {get;}
-     public Secuence Secuence {get;}
-   public Count(Token nombre , Secuence Secuence )
+    public override Token nombre { get; }
+    public Secuence Secuence { get; }
+    public Count(Token nombre, Secuence Secuence)
     {
-       
-        this.nombre = nombre ;
+
+        this.nombre = nombre;
         this.Secuence = Secuence;
     }
 }
 
 public sealed class Randoms : Funcion
 {
-    public override Token nombre {get;}
+    public override Token nombre { get; }
 
-   public Randoms(Token nombre )
+    public Randoms(Token nombre)
     {
-       
-        this.nombre = nombre ;
+
+        this.nombre = nombre;
     }
 }
 
 public sealed class PointsFunction : Funcion
 {
-    public override Token nombre {get;}
-    public Figura Figure1 {get;}
+    public override Token nombre { get; }
+    public Figura Figure1 { get; }
 
-   public PointsFunction(Token nombre , Figura Figure1)
+    public PointsFunction(Token nombre, Figura Figure1)
     {
-        this.Figure1 = Figure1 ;  
-        this.nombre = nombre ;
+        this.Figure1 = Figure1;
+        this.nombre = nombre;
     }
 }
 
 public sealed class Samples : Funcion
 {
-    public override Token nombre {get;}
+    public override Token nombre { get; }
 
-   public Samples(Token nombre )
+    public Samples(Token nombre)
     {
-       
-        this.nombre = nombre ;
+
+        this.nombre = nombre;
     }
 }
 
@@ -270,84 +269,84 @@ public sealed class Samples : Funcion
 
 
 
-public sealed class Punto : Figura 
+public sealed class Punto : Figura
 {
 
-public Punto ( Token identificador , Token nombre )
-{
-    this.identificador=identificador;
-    this.nombre=nombre;
-    
-}
+    public Punto(Token identificador, Token nombre)
+    {
+        this.identificador = identificador;
+        this.nombre = nombre;
 
-public  override Token  identificador {get;}
-public override Token nombre {get;}
+    }
 
-}
-
-public sealed class Circle : Figura 
-{
-
-public Circle(Token identificador , Token nombre ) : this (identificador , nombre , nombre , nombre ){}
-
-public Circle ( Token identificador , Token nombre , Token param1, Token param2)
-{
-    this.identificador=identificador;
-    this.nombre=nombre;
-    this.param1=param1;
-    this.param2=param2;
-}
-
-public  override Token  identificador {get;}
-public  override Token nombre {get;}
-public  Token param1{get;}
-public  Token param2{get;}
+    public override Token identificador { get; }
+    public override Token nombre { get; }
 
 }
 
-public sealed class Line : Figura 
+public sealed class Circle : Figura
 {
 
-public Line(Token identificador , Token nombre ) : this (identificador , nombre , nombre , nombre ){}
+    public Circle(Token identificador, Token nombre) : this(identificador, nombre, nombre, nombre) { }
 
-public Line ( Token identificador , Token nombre , Token param1, Token param2)
-{
-    this.identificador=identificador;
-    this.nombre=nombre;
-    this.param1=param1;
-    this.param2=param2;
+    public Circle(Token identificador, Token nombre, Token param1, Token param2)
+    {
+        this.identificador = identificador;
+        this.nombre = nombre;
+        this.param1 = param1;
+        this.param2 = param2;
+    }
+
+    public override Token identificador { get; }
+    public override Token nombre { get; }
+    public Token param1 { get; }
+    public Token param2 { get; }
+
 }
+
+public sealed class Line : Figura
+{
+
+    public Line(Token identificador, Token nombre) : this(identificador, nombre, nombre, nombre) { }
+
+    public Line(Token identificador, Token nombre, Token param1, Token param2)
+    {
+        this.identificador = identificador;
+        this.nombre = nombre;
+        this.param1 = param1;
+        this.param2 = param2;
+    }
 
     public sealed class LineSecuence : Secuence
     {
-        public override Token identificador {get;}
+        public override Token identificador { get; }
 
-        public override Token nombre {get;}
+        public override Token nombre { get; }
 
-        public List<Line> Line {get;}
+        public List<Line> Line { get; }
 
-        public LineSecuence(Token identificador , Token nombre , List<Line> Line )
+        public LineSecuence(Token identificador, Token nombre, List<Line> Line)
         {
             this.identificador = identificador;
-            this.nombre = nombre ;
+            this.nombre = nombre;
             this.Line = Line;
 
         }
     }
 
-     public sealed class PointSecuence : Secuence
+    public sealed class PointSecuence : Secuence
     {
-        public override Token identificador {get;}
+        public override Token identificador { get; }
 
-        public override Token nombre {get;}
+        public override Token nombre { get; }
 
-        public List<Punto> Points {get;}
+        public List<Punto> Points { get; }
 
-        public PointSecuence(Token identificador , Token nombre , List<Punto> Points )
+        public PointSecuence(Token identificador, Token nombre, List<Punto> Points)
         {
             this.identificador = identificador;
-            this.nombre = nombre ;
-            this.Points= Points;
+            this.nombre = nombre;
+            this.Points = Points;
 
         }
     }
@@ -356,10 +355,10 @@ public Line ( Token identificador , Token nombre , Token param1, Token param2)
 
 
 
-    public override Token  identificador {get;}
-public override Token nombre {get;}
-public  Token param1{get;}
-public Token param2{get;}
+    public override Token identificador { get; }
+    public override Token nombre { get; }
+    public Token param1 { get; }
+    public Token param2 { get; }
 
 }
 
@@ -379,11 +378,11 @@ public class ValorNumerico : AST
 
     public override object Evaluar(Entorno entorno)
     {
-        
+
         return Valor;
     }
 
-   
+
 }
 
 public class OperacionAritmetica : AST
@@ -400,41 +399,41 @@ public class OperacionAritmetica : AST
     }
 
     public override object Evaluar(Entorno entorno)
-{
-    
-    double valorIzquierdo = Convert.ToDouble(OperandoIzquierdo.Evaluar(entorno));
-    double valorDerecho = Convert.ToDouble(OperandoDerecho.Evaluar(entorno));
-
-   
-    switch (Operador)
     {
-        case "+":
-            return valorIzquierdo + valorDerecho;
-        case "-":
-            return valorIzquierdo - valorDerecho;
-        case "*":
-            return valorIzquierdo * valorDerecho;
-         case "%":
-            return valorIzquierdo % valorDerecho;    
-          case "^":
-            return Math.Pow(valorIzquierdo,valorDerecho);   
-        case "/":
-            if (valorDerecho != 0)
-            {
-                return valorIzquierdo / valorDerecho;
-            }
-            else
-            {
-                throw new Exception("Error: División por cero.");
-            }
-        default:
-            throw new Exception($"Error: Operador desconocido '{Operador}'.");
+
+        double valorIzquierdo = Convert.ToDouble(OperandoIzquierdo.Evaluar(entorno));
+        double valorDerecho = Convert.ToDouble(OperandoDerecho.Evaluar(entorno));
+
+
+        switch (Operador)
+        {
+            case "+":
+                return valorIzquierdo + valorDerecho;
+            case "-":
+                return valorIzquierdo - valorDerecho;
+            case "*":
+                return valorIzquierdo * valorDerecho;
+            case "%":
+                return valorIzquierdo % valorDerecho;
+            case "^":
+                return Math.Pow(valorIzquierdo, valorDerecho);
+            case "/":
+                if (valorDerecho != 0)
+                {
+                    return valorIzquierdo / valorDerecho;
+                }
+                else
+                {
+                    throw new Exception("Error: División por cero.");
+                }
+            default:
+                throw new Exception($"Error: Operador desconocido '{Operador}'.");
+        }
+
+
     }
 
-    
-}
 
-  
 
 }
 
@@ -450,27 +449,27 @@ public class Negacion : AST
     }
 
     public override object Evaluar(Entorno entorno)
-{
-    
-    object valor = subexpresion.Evaluar(entorno);
+    {
 
-    
-    if (valor is int)
-    {
-       
-        return - Convert.ToDouble(valor);
+        object valor = subexpresion.Evaluar(entorno);
+
+
+        if (valor is int)
+        {
+
+            return -Convert.ToDouble(valor);
+        }
+        else if (valor is double)
+        {
+
+            return -(double)valor;
+        }
+        else
+        {
+
+            throw new Exception("Error: se intentó negar un valor no numérico.");
+        }
     }
-    else if (valor is double)
-    {
-        
-        return - (double)valor;
-    }
-    else
-    {
-      
-        throw new Exception("Error: se intentó negar un valor no numérico.");
-    }
-}
 
 }
 
@@ -485,7 +484,7 @@ public class Cadena : AST
 
     public override object Evaluar(Entorno entorno)
     {
-       return Valor;
+        return Valor;
     }
 }
 
@@ -506,12 +505,12 @@ public class FuncionLog : AST
 
     public override object Evaluar(Entorno entorno)
     {
-         double valorBase = Convert.ToDouble(BaseLog.Evaluar(entorno));
+        double valorBase = Convert.ToDouble(BaseLog.Evaluar(entorno));
         double valorArgumento = Convert.ToDouble(ArgumentoLog.Evaluar(entorno));
-       
 
-       
-        return Math.Log(valorBase,valorArgumento);
+
+
+        return Math.Log(valorBase, valorArgumento);
     }
 }
 
@@ -526,10 +525,10 @@ public class FuncionSin : AST
 
     public override object Evaluar(Entorno entorno)
     {
-        
+
         double valorArgumento = Convert.ToDouble(Argumento.Evaluar(entorno));
 
-       
+
         return Math.Sin(valorArgumento);
     }
 }
@@ -544,10 +543,10 @@ public class FuncionCos : AST
 
     public override object Evaluar(Entorno entorno)
     {
-        
+
         double valorArgumento = Convert.ToDouble(Argumento.Evaluar(entorno));
 
-       
+
         return Math.Cos(valorArgumento);
     }
 }
@@ -559,10 +558,10 @@ public class FuncionCos : AST
 
 
 
- 
 
-    public class OperadorLogico : AST
-{   
+
+public class OperadorLogico : AST
+{
 
 
     public AST OperandoIzquierdo { get; }
@@ -577,30 +576,30 @@ public class FuncionCos : AST
     }
 
     public override object Evaluar(Entorno entorno)
-{
-   
-    var valorIzquierdo = OperandoIzquierdo.Evaluar(entorno);
-    var valorDerecho = OperandoDerecho.Evaluar(entorno);
-
-   
-    switch (Operador)
     {
-        case "==":
-            return Convert.ToDouble(valorIzquierdo) == Convert.ToDouble(valorDerecho);
-        case "!=":
-            return Convert.ToDouble(valorIzquierdo) != Convert.ToDouble(valorDerecho);;
-        case ">":
-            return Convert.ToDouble(valorIzquierdo) > Convert.ToDouble(valorDerecho);
-        case "<":
-            return Convert.ToDouble(valorIzquierdo) < Convert.ToDouble(valorDerecho);
-        case "&&":
-            return Convert.ToBoolean(valorIzquierdo) && Convert.ToBoolean(valorDerecho);
-        case "||":
-            return Convert.ToBoolean(valorIzquierdo) || Convert.ToBoolean(valorDerecho);
-        default:
-            throw new Exception($"Error: Operador desconocido '{Operador}'.");
+
+        var valorIzquierdo = OperandoIzquierdo.Evaluar(entorno);
+        var valorDerecho = OperandoDerecho.Evaluar(entorno);
+
+
+        switch (Operador)
+        {
+            case "==":
+                return Convert.ToDouble(valorIzquierdo) == Convert.ToDouble(valorDerecho);
+            case "!=":
+                return Convert.ToDouble(valorIzquierdo) != Convert.ToDouble(valorDerecho); ;
+            case ">":
+                return Convert.ToDouble(valorIzquierdo) > Convert.ToDouble(valorDerecho);
+            case "<":
+                return Convert.ToDouble(valorIzquierdo) < Convert.ToDouble(valorDerecho);
+            case "&&":
+                return Convert.ToBoolean(valorIzquierdo) && Convert.ToBoolean(valorDerecho);
+            case "||":
+                return Convert.ToBoolean(valorIzquierdo) || Convert.ToBoolean(valorDerecho);
+            default:
+                throw new Exception($"Error: Operador desconocido '{Operador}'.");
+        }
     }
-}
 
 }
 
@@ -613,20 +612,20 @@ public class Identificador : AST
         Nombre = nombre;
     }
     public override object Evaluar(Entorno entorno)
-{
-   
-    var variable = entorno.BuscarVariable(Nombre);
-    if (variable != null)
     {
-        
-        return variable.Value;
+
+        var variable = entorno.BuscarVariable(Nombre);
+        if (variable != null)
+        {
+
+            return variable.Value;
+        }
+        else
+        {
+
+            throw new Exception($"Error: Variable no definida '{Nombre}'.");
+        }
     }
-    else
-    {
-       
-        throw new Exception($"Error: Variable no definida '{Nombre}'.");
-    }
-}
 
 
 
@@ -645,18 +644,18 @@ public class DeclaracionVariable : AST
     }
 
     public override object Evaluar(Entorno entorno)
-{
-    
-    var valor = ValorInicial.Evaluar(entorno);
+    {
 
-    
-    entorno.DefinirVariable(new Variable(Nombre, valor));
+        var valor = ValorInicial.Evaluar(entorno);
 
-   
-    return null;
-}
 
-    
+        entorno.DefinirVariable(new Variable(Nombre, valor));
+
+
+        return null;
+    }
+
+
 }
 
 public class Concatenacion : AST
@@ -672,11 +671,11 @@ public class Concatenacion : AST
 
     public override object Evaluar(Entorno entorno)
     {
-        
+
         object valorIzquierdo = Izquierdo.Evaluar(entorno);
         object valorDerecho = Derecho.Evaluar(entorno);
 
-        
+
         return valorIzquierdo.ToString() + " " + valorDerecho.ToString();
     }
 }
@@ -691,21 +690,21 @@ public class LetInExpression : AST
         Cuerpo = cuerpo;
     }
 
-   public override object Evaluar(Entorno entorno)
-{
-    
-    foreach (var variable in this.Entorno.variables)
+    public override object Evaluar(Entorno entorno)
     {
-        entorno.DefinirVariable(variable.Value);
+
+        foreach (var variable in this.Entorno.variables)
+        {
+            entorno.DefinirVariable(variable.Value);
+        }
+
+
+        return this.Cuerpo.Evaluar(entorno);
     }
 
-  
-    return this.Cuerpo.Evaluar(entorno);
-}
 
 
 
-    
 }
 
 
@@ -725,20 +724,20 @@ public class IfElseExpression : AST
     }
 
     public override object Evaluar(Entorno entorno)
-{
-  
-    bool condicion = Convert.ToBoolean(Condicion.Evaluar(entorno));
+    {
 
-   
-    if (condicion)
-    {
-        return ExpresionIf.Evaluar(entorno);
+        bool condicion = Convert.ToBoolean(Condicion.Evaluar(entorno));
+
+
+        if (condicion)
+        {
+            return ExpresionIf.Evaluar(entorno);
+        }
+        else
+        {
+            return ExpresionElse.Evaluar(entorno);
+        }
     }
-    else
-    {
-        return ExpresionElse.Evaluar(entorno);
-    }
-}
 
 }
 
@@ -752,11 +751,11 @@ public class PrintExpression : AST
     }
 
     public override object Evaluar(Entorno entorno)
-{
-    
-    var valor = Expresion.Evaluar(entorno);
-    return valor.ToString();
-}
+    {
+
+        var valor = Expresion.Evaluar(entorno);
+        return valor.ToString();
+    }
 }
 
 public class FuncionInline : AST
@@ -770,16 +769,16 @@ public class FuncionInline : AST
         Nombre = nombre;
         Parametros = parametros;
         Cuerpo = cuerpo;
-        
+
     }
     public override object Evaluar(Entorno entorno)
-{
-   
-    entorno.DefinirFuncion(this);
+    {
 
-    
-    return null;
-}
+        entorno.DefinirFuncion(this);
+
+
+        return null;
+    }
 
 }
 
@@ -803,9 +802,9 @@ public class LlamadaFuncion : AST
             throw new Exception($"Error: Función no definida '{Nombre}'.");
         }
 
-        var entornoFuncion = new Entorno(); 
+        var entornoFuncion = new Entorno();
 
-        
+
         foreach (var variable in entorno.variables)
         {
             entornoFuncion.DefinirVariable(variable.Value);
@@ -817,7 +816,7 @@ public class LlamadaFuncion : AST
 
         for (int i = 0; i < Argumentos.Count; i++)
         {
-            var valor = Argumentos[i].Evaluar(entorno); 
+            var valor = Argumentos[i].Evaluar(entorno);
             var variable = new Variable(funcion.Parametros[i], valor);
             entornoFuncion.DefinirVariable(variable);
         }
@@ -861,25 +860,25 @@ public class Entorno
         {
             return funcion;
         }
-       else
+        else
         {
             return null;
         }
-    }    
+    }
 }
 
 public class Variable
 {
-    public string Name { get; private set;}
-    public object Value { get; private set;} 
+    public string Name { get; private set; }
+    public object Value { get; private set; }
 
     public Variable(string name, object value)
     {
-       Name = name;
-       Value = value;
+        Name = name;
+        Value = value;
     }
 
-    
+
 }
 
 
@@ -890,7 +889,6 @@ public class Variable
 
 
 
-    
 
 
 
@@ -901,9 +899,10 @@ public class Variable
 
 
 
- 
 
-    
+
+
+
 
 
 
